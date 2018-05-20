@@ -11,5 +11,11 @@ The key learnings of this course include:
 * how to persist state between messages using Firebase
 * how to start implementing the logic of a personal assistant to remind users of actions they need to take
 
+# Before executing it, setting credentials and variables must be updated
+
+1st) Rename server/config/dev.example.js to dev.js
+
+2nd) Update your own values
+
 # Check the course on
 https://www.udemy.com/how-to-create-a-slack-bot-to-automate-tasks-for-you
