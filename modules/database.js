@@ -26,6 +26,11 @@ const readPurchaseRequest = async key => {
   return snapshot.val()
 }
 
+const readAllPurchaseRequests = async () => {
+  const snapshot = await ref.once('value')
+  return snapshot.val()
+}
+
 const recordPurchaseRequestDecision = async (key,decision) => {
   await ref.child(key).update({
     approved: decision
@@ -35,5 +40,6 @@ const recordPurchaseRequestDecision = async (key,decision) => {
 module.exports = {
   savePurchaseRequest,
   readPurchaseRequest,
-  recordPurchaseRequestDecision
+  recordPurchaseRequestDecision,
+  readAllPurchaseRequests
 }
