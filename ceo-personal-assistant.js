@@ -20,18 +20,13 @@ const CheckOnPurchaseRequests = async () => {
   for (let key of Object.keys(purchaseRequests)) {
     const { timestamp, approved, item, userId } = purchaseRequests[key]
 
-    if (approved === undefined && moment().diff(timestamp,"minutes") > 240) {
+    if (approved === undefined && moment().diff(timestamp,"minutes") > 1) {
       purchaseRequestReminders.push({item, userId})
-      // console.log(
-      //   `The purchase for ${item} was made ${moment().diff(timestamp,"minutes")} minutes ago, `
-      //   +`and the CEO ${approved === undefined ? 'has not decided about': approved ? 'approved': 'denied'} this.`
-      // )
     }
   }
 
+  console.log(`Total reminders to send to CEO are ${purchaseRequestReminders.length}.`)
   if (purchaseRequestReminders.length>0) {
-    // console.log('These are the purchase requets that we need to remind the CEO of')
-    // console.log(purchaseRequestReminders)    
     sendDm(
       keys.ceoMemberId,
       'Hi! Here are the purshases requests that still need a decision from you.',
@@ -43,3 +38,5 @@ const CheckOnPurchaseRequests = async () => {
 }
 
 CheckOnPurchaseRequests()
+
+setInterval(CheckOnPurchaseRequests, 10 * 1000) // Every 10 seconds
